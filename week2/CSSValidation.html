@@ -5,23 +5,72 @@
     <title>CSSValidation</title>
     <style>
 
+        :root {
+            --base-color: #3c3c3c;
+            --shadow-color: #040505;
+            --highlight-color: #4a4a4a;
+            --contrast-color: white;
+            --active-color-dark: #3a74a1;
+            --active-color-light: #4e9bd8;
+            --danger-color-dark: #b71013;
+            --danger-color-light: #ed3134;
+            --shadow: -5px -5px 20px var(--highlight-color), 5px 5px 20px var(--shadow-color);
+            --shadow-small: -2px -2px 5px var(--highlight-color), 2px 2px 5px var(--shadow-color);
+            --shadow-inset-active: inset 1px 1px 2px var(--active-color-dark), inset -1px -1px 2px var(--active-color-light);
+            --shadow-inset-danger: inset 1px 1px 2px var(--danger-color-dark), inset -1px -1px 2px var(--danger-color-light);
+            --shadow-inset: inset 2px 2px 5px var(--shadow-color), inset -5px -5px 10px var(--highlight-color);
+            --shadow-inset-small: inset 1px 1px 2px var(--shadow-color), inset -1px -1px 2px var(--highlight-color);
+        }
+
+        * {
+            color: var(--contrast-color);
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            margin: 2em auto;
+            max-width: 25em;
+            padding: 1em 2em;
+            box-shadow: var(--shadow);
+            background-color: var(--base-color);
+            border-radius: 1em;
+        }
+
         /* style the form */
         form {
             display: grid;
-            grid-template-columns: max-content max-content;
-            grid-column-gap: 1em;
+            grid-template-columns: max-content auto;
+            grid-gap: 1em;
+            vertical-align: middle;
+        }
+
+        label {
+            vertical-align: text-bottom;
+            line-height: 3em;
+        }
+
+        input {
+            padding: 1em;
+            background-color: var(--base-color);
+            box-shadow: var(--shadow-inset);
+            border: none;
+            border-radius: 2em;
+            outline: none;
+        }
+        input:focus {
+            box-shadow: var(--shadow-inset-active);
         }
 
         /* style invalid input */
         input:invalid {
-            background-color: red;
+            box-shadow: var(--shadow-inset-danger);
         }
 
     </style>
 </head>
 <body>
 
-Show various input types and how they validate.
+<p>Show various input types and how they validate.</p>
 
 <form>
     <label>text, search  </label>  <input id="input1" type="text" pattern="[a-z]*">
@@ -36,7 +85,7 @@ Show various input types and how they validate.
     <label>month         </label>  <input type="month" >
     <label>color         </label>  <input type="color" >
 </form>
-radio, checkbox, range
+<p>radio, checkbox, range</p>
 
 <script>
     const input1 = document.getElementById("input1");
