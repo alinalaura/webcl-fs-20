@@ -13,8 +13,11 @@
         }
 
         main {
-            /* todo: put main in the center  */
-
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
         }
 
         .rainbow {
@@ -23,15 +26,25 @@
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
-            background: #9ae69c88;
+            background: rgba(162, 230, 230, 0.53);
             padding: 1em;
             border-radius: 2em;
-
+            position: relative;
+            /*z-index: 0;*/
         }
 
-        /* todo: make a rainbow-colored shadow by blurring a positioned background */
-
-
+        .rainbow::before {
+            content: "";
+            background: linear-gradient(90deg, darkblue, purple);
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+            z-index: -1;
+            border-radius: 2em;
+            filter: blur(.3em);
+        }
     </style>
 </head>
 <body>
